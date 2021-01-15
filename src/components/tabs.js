@@ -20,7 +20,7 @@
  
       /*<----------   create document topic element and assign to classname ----------------->*/ 
       const mainTopic = document.createElement("div");
-      mainTopic.classList.add(topics);
+      mainTopic.classList.add("topics");
 
       //for Each loop is used to create tab division eachtime when the array is being passed
       topics.forEach(topicName => {

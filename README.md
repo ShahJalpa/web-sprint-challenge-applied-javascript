@@ -72,10 +72,17 @@ There are two possible ways to submit this project to Canvas. Lambda Staff will 
 
 ## Interview Questions
 
-Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
-
+Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand. 
 1. What is the DOM?
+    DOM is Document Object Model. It is data structure with parents element and children ements. Children elements are nested inside the parents element. We can find out the complete hierarchy of the webpage.
+
 2. What is an event?
+    event is an action that happens on the page. Such as scroll up and down, click on button etc.
+
 3. What is an event listener?
+    event listener is procedure that happens when the event been triggered. such as click on 'submit' button. 
+
 4. Why would we convert a NodeList into an Array?
+
 5. What is a component?
+    component is a part which bring HTML, CSS and JavaScipt togather.

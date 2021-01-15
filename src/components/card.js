@@ -17,8 +17,10 @@
   // </div>
   //
 
-import axios from "axios";
-import { response } from "msw/lib/types";
+import axios from "axios"; //import dependeancy
+import {articles} from "../mocks/data";
+
+
 const Card = (article) => {
 
     /*<----------   create document element   ----------------->*/ 
@@ -43,13 +45,13 @@ const Card = (article) => {
     imgContainer.classList.add("img-container");
 
     //<--------- text content, img src ------------->
-    headline.textContent = article.headLine;
+    headline.textContent = article.headline;
     authorPhoto.setAttribute('src', article.authorPhoto);
-    authorName.textContent = article.authorName;
+    authorName.textContent = `By ${article.authorName}`;
 
     //<------------ adding event listener ---------------->
     cardDiv.addEventListener('click', () =>{
-      console.log(article.headline);
+      console.log(headline);
     })
 
     //<----------- return cardDiv ------------>
@@ -65,11 +67,62 @@ const Card = (article) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
 const cardAppender = (selector) => {
-      /*axios
+  axios
       .get(`https://lambda-times-api.herokuapp.com/articles`)
       .then((response) => {
+        console.log(response);
+        //------------- getting main TOPICS object array from articles object first before getting their own array elements ---------
+        const articleObj = response.data.articles;
+        const javaScriptArray = articleObj.javascript;
+        const bootstrapArray = articleObj.bootstrap;
+        const jQueryArray = articleObj.jquery;
+        const nodeArray = articleObj.node;
+        const technologyArray = articleObj.technology;
 
-      })*/
+        //----------- now with loop on each TOPICS array getting the information using card component ------------
+        javaScriptArray.forEach(info => {
+          const jsCard = Card(info);
+          document.querySelector(selector).appendChild(jsCard);
+        });
+
+        bootstrapArray.forEach(info => {
+          const bsCard = Card(info);
+          document.querySelector(selector).appendChild(bsCard);
+        });
+
+        jQueryArray.forEach(info => {
+          const jqard = Card(info);
+          document.querySelector(selector).appendChild(jqard);
+        });
+
+        nodeArray.forEach(info => {
+          const ndCard = Card(info);
+          document.querySelector(selector).appendChild(ndCard);
+        });
+
+        technologyArray.forEach(info => {
+          const tcnCard = Card(info);
+          document.querySelector(selector).appendChild(tcnCard);
+        });
+      })
+      .catch((error) => {
+        console.log("something went wrong", error);
+      })
+  
+  /*articles.forEach(article=> {
+    axios
+      .get(`https://lambda-times-api.herokuapp.com/articles`)
+      .then((response) => {
+        article = Card(response)
+        console.log(response);
+        const newCards = Card(article);
+        document.querySelector(selector).appendChild(newCards);
+      })
+      .catch((error) => {
+        console.log("something went wrong", error);
+      })
+  });*/
+      
 }
 
 export { Card, cardAppender }
